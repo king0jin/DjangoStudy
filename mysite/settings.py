@@ -23,13 +23,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-(@58x8j@*-p8ai1ldsw#u93atmn62#hcq--&s-vuedms6hry8z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True #개발모드
+       #False : 운영모드
 
-ALLOWED_HOSTS = []
+#실제 배포가 될 컴퓨터의 IP 설정
+#기본 값은 내 컴퓨터이다 = 127.0.0.1
+ALLOWED_HOSTS = ['*']
+#클라우드 환경에 배포한다면? => 고정 IP를 기재
+#모든 컴퓨터에서 배포하고자 한다면? => '*'를 기재
 
 
 # Application definition
-
+# 사용할 패키지, 애플리케이션을 등록
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,8 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'myweb'
 ]
 
+#요청이 오기 전 or 후에 수행할 내용을 작성
+# ex) 클라이언트가 AJAX 요청 or 응답 처리 중간에서 작동하는 시스템
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -105,7 +113,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# 시간을 나라/지역에 맞게 설정
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
