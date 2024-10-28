@@ -31,6 +31,8 @@ urlpatterns = [
     path('querystring/', views.queryString), #myweb.views에 있는 queryString함수 호출
     #3. Post요청
     path('requestbody', views.requestBody), #myweb.views에 있는 requestBody함수 호출
-    path('formdata', views.formData) #myweb.views에 있는 formData함수 호출
+    path('formdata', views.formData), #myweb.views에 있는 formData함수 호출
+    #4. 파일 업로드 요청
+    path('fileupload', views.fileUpload), #myweb.views에 있는 fileUpload함수 호출
 
 ]

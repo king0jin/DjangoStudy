@@ -38,3 +38,20 @@ def formData(request):
     name = request.POST.get("name")
     age = request.POST.get("age")
     return HttpResponse("이름은 " + name + "이고 나이는 " + age + "세이다.")
+
+#4. fileupload요청시, fileUpload함수
+from django.core.files.storage import FileSystemStorage
+import uuid
+def fileUpload(request):
+    #4.1 file이라는 이름으로 전송된 파일 읽어서 myfile에 저장
+    myfile = request.FILES["file"]
+    #4.2 fs에 파일이 업로드 될 위치 저장
+    fs = FileSystemStorage(location="media/DjangoStudy", base_url="media/DjangoStudy")
+    #4.2 truename에 원본 파일 이름 저장
+    truename = myfile.name
+    #4.3 파일이 저장위치에 업로드 될 때 uuid가 추가된 이름으로 업로드
+    #업로드 된 파일에 이름 중복을 방지하기 위하여 파일 이름에 uuid를 추가하여 저장 = 업로드 되면서 또한번 파일이름이 변경.
+    filename = fs.save(truename + str(uuid.uuid1()), myfile)
+    #4.4 업로드된 파일의 URL
+    upload_fileurl = fs.url(filename)
+    return HttpResponse("업로드 된 파일이름 : " + filename + ", url : " + upload_fileurl)
