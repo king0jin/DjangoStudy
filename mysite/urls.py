@@ -26,5 +26,7 @@ urlpatterns = [
     #1. 기본 요청 설정
     path('', views.index), #myweb.views에 있는 index함수 호출
     #2. 문자열 형태의 get 요청 설정
-    path('get/<str:itemid>', views.getItem) #myweb.views에 있는 getItem함수 호출
+    path('get/<str:itemid>', views.getItem), #myweb.views에 있는 getItem함수 호출
+    #2.1 문자열 형태의 get 요청시, 쿼리 적용
+    path ('querystring/', views.queryString) #myweb.views에 있는 queryString함수 호출
 ]

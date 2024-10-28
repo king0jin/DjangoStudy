@@ -18,3 +18,12 @@ def index(request):
 def getItem(request, itemid):
     #itemid : 넘겨 받은 데이터
     return HttpResponse("<h3>" + itemid + "<h3>")
+
+#2.1 문자열 형태의 get 요청시, 쿼리 적용 queryString함수 
+def queryString(request):
+    #기본값 설정
+    name = request.GET.get("name", "이름 없음")
+    return HttpResponse("<h2>" + name + "</h2>")
+    #return HttpResponse("<h2>" + request.GET["name"] + "<h2>")
+    #queryString/?name=데이터 로 요청 받으면 데이터가 화면에 보인다
+    
