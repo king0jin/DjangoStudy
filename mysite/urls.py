@@ -28,5 +28,9 @@ urlpatterns = [
     #2. 문자열 형태의 get 요청 설정
     path('get/<str:itemid>', views.getItem), #myweb.views에 있는 getItem함수 호출
     #2.1 문자열 형태의 get 요청시, 쿼리 적용
-    path ('querystring/', views.queryString) #myweb.views에 있는 queryString함수 호출
+    path('querystring/', views.queryString), #myweb.views에 있는 queryString함수 호출
+    #3. Post요청
+    path('requestbody', views.requestBody), #myweb.views에 있는 requestBody함수 호출
+    path('formdata', views.formData) #myweb.views에 있는 formData함수 호출
+
 ]

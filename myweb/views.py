@@ -26,4 +26,15 @@ def queryString(request):
     return HttpResponse("<h2>" + name + "</h2>")
     #return HttpResponse("<h2>" + request.GET["name"] + "<h2>")
     #queryString/?name=데이터 로 요청 받으면 데이터가 화면에 보인다
-    
+  
+#3. Post요청시, requestBody함수, formData함수
+#ex) 사용자 정보
+import json
+def requestBody(request):
+    user = json.loads(request.body)
+    return HttpResponse("이름은 " + user["name"] + "이고 나이는 " + user["age"] + "세이다.")
+
+def formData(request):
+    name = request.POST.get("name")
+    age = request.POST.get("age")
+    return HttpResponse("이름은 " + name + "이고 나이는 " + age + "세이다.")
