@@ -24,5 +24,7 @@ urlpatterns = [
     #admin요청이 왔을 때, admin.site에 있는 urls함수 호출
     path('admin/', admin.site.urls),
     #1. 기본 요청 설정
-    path('', views.index) #myweb.views에 있는 index함수 호출
+    path('', views.index), #myweb.views에 있는 index함수 호출
+    #2. 문자열 형태의 get 요청 설정
+    path('get/<str:itemid>', views.getItem) #myweb.views에 있는 getItem함수 호출
 ]
