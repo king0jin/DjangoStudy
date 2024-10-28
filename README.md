@@ -47,3 +47,15 @@ django는 데이터베이스 관리 기능을 편리하게 하기위해서 관�
 ### 관리자 계정 생성
 **python managy.py createsuperuser**
 명령을 수행하고 이름, 이메일, 비밀번호를 입력하여 계정을 생성한다 
+
+---
+## 요청 URL과 처리 함수
++ 요청 URL : urls.py
++ 처리함수 : views.py
+  + 간단한 내용을 HTML로 출력 : HttpResponse객체에 직접 내용 작성
+  + 복잡한 내용(서버가 처리하고 전달받은 데이터)을 출력 : **template**
+ 
+### template
+규격에 맞게 작성하면 HTML로 변환하여 서버가 클라이언트에게 전송
++ 애플리케이션 디렉토리에 templates디렉토리 생성
+  + views.py에서 함수의 리턴 값으로 render(행 
