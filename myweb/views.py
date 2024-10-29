@@ -55,3 +55,20 @@ def fileUpload(request):
     #4.4 업로드된 파일의 URL
     upload_fileurl = fs.url(filename)
     return HttpResponse("업로드 된 파일이름 : " + filename + ", url : " + upload_fileurl)
+
+#5. 쿠키 생성/읽기 요청시, cookieCreate함수, cookieRead함수
+def cookieCreate(request):
+    #인스턴스 생성
+    response = HttpResponse("쿠키 생성 되었다")
+    #쿠키에 데이터 저장
+    response.set_cookie("name", "youngjin")
+    #세션에 데이터 저장
+    request.session["age"] = "24"
+    return response
+
+def cookieRead(request):
+    #쿠키 읽기
+    name = request.COOKIES.get("name", "기본값")
+    #세션 읽기
+    age = request.session.get("age", "기본값")
+    return HttpResponse(name + "이는 " + age + "세 입니다.")

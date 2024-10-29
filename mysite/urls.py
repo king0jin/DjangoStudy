@@ -34,5 +34,7 @@ urlpatterns = [
     path('formdata', views.formData), #myweb.views에 있는 formData함수 호출
     #4. 파일 업로드 요청
     path('fileupload', views.fileUpload), #myweb.views에 있는 fileUpload함수 호출
-
+    #5. 쿠키 생성/읽기 요청
+    path('cookiecreate', views.cookieCreate), #myweb.views에 있는 cookieCreate함수 호출
+    path('cookieread', views.cookieRead), #myweb.views에 있는 cookieRead함수 호출
 ]
