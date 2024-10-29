@@ -1,14 +1,13 @@
 # DjangoStudy
 파이썬 웹 프로그래밍 프레임워크인 Django를 이용하기 
 
-## 1단계 
-프로젝트와 애플리케이션 생성하기
-+ 프로젝트 생성
-  + **django-admin startproject 프로젝트이름 경로**
-    + 내가 설정한 프로젝트이름의 디렉토리와 manage.py가 생성된다.
-+ 애플리케이션 생성하기
-  + **python manage.py startapp 애플리케이션이름**
-    + 내가 설정한 애플리케이션이름의 디렉토리가 생성된다.
+## 프로젝트와 애플리케이션 생성하기
+### 프로젝트 생성
+**django-admin startproject 프로젝트이름 경로**
++ 내가 설정한 프로젝트이름의 디렉토리와 manage.py가 생성된다.
+### 애플리케이션 생성하기
+**python manage.py startapp 애플리케이션이름**
++ 내가 설정한 애플리케이션이름의 디렉토리가 생성된다.
    
 ## 실행하기
 **python manage.py runserver IP주소:포트번호**
@@ -105,7 +104,15 @@ Cross Site Request Forgery : 크로스 사이트 요청 위조
   + 사용자가 인증한 세션에서 웹 애플리케이션이 정상적인 요청과 비정상적인 요청을 구분하지 못하는 점을 악용
 + **CSRF 종료** 를 시키고 postman에서 다시 test를 수행한다 
 
+---
+## file upload - post
+FileSystemStorage 클래스 이용 
++ 실제 운영 환경에서 파일은 로컬에 저장하지 않으므로 클라우드나 별도의 파일 서버를 만들어서 저장
 
- 
+### settings.py 설정
+1. 정적 파일이 저장되는 디렉토리 설정
+2. 로컬에 파일이 업로드할 때 설정
+   + VScode에 media디렉토리 생성하고 그 안에 DjangoStudy디렉토리를 생성한다
+  
 
-
+  
