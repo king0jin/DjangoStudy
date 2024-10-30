@@ -125,11 +125,22 @@ FileSystemStorage 클래스 이용
 1. mysqlclient라는 패키지가 필요 : **pip install mysqlclient**
 2. settings.py 수정
 
+**애플리케이션 디렉토리 models.py**
+1. 클래스 단위로 테이블을 정의한다
+2. 클래스를 만들 때는 Model클래스로 부터 상속받아야 한다
+3. primary key를 설정하지 않으면 테이블이 생성하면서 자동으로 id가 생성된다
+4. 클래스안에 속성을 선언하면 테이블의 컬럼이 만들어지고 models의 여러 종류의 클래스와 옵션 설정이 가능하다
+5. 대다수의 ORM은 테이블이 존재하지 않으면 테이블을 자동으로 생성해준다
+  + 제약조건은 속성의 자료형에 해당하는 클래스에서 생성자나 메소드를 통해서 지정이 가능하다 
 
 **데이터베이스 정보를 수정**한 경우 반영을 해주어야한다
 1. python manage.py makemigrations
 2. python manage.py migrate
 
   
+### 클래스(테이블)생성 방법
+방법1. models.py에 클래스를 정의하고 데이터베이스에 반영한다
 
+
+방법2. 데이터베이스에 테이블을 생성하고 models.py에 매핑되는 클래스를 정의하여 반영한다 
   
