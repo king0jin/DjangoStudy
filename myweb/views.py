@@ -6,8 +6,14 @@ from django.shortcuts import render, get_object_or_404
  
 from django.http import HttpResponse
 
-#6. CRUD작업을 위해 사용하고 싶은 테이블 불어오기
+#CRUD작업 - 사용하고 싶은 테이블(모델) 불어오기
 from myweb.models import Item
+#CURD작업 - 특정 필드의 최대값을 가져오기 위해 사용
+from django.db.models import Max
+#CRUD작업 - HTTP 요청을 처리하는 도중에 특정 URL로 사용자를 리디렉션하기 위해 사용
+from django.shortcuts import redirect
+#CURD작업 - JSON데이터 처리를 위해 사용
+import json
 
 #1. 기본 요청시, index함수
 #6. CRUD - 기본 요청시, 테이블 모든 데이터 조회
@@ -22,11 +28,30 @@ def index(request):
     print(data)
     return render(request, 'index.html', {'data':data})
 
-#7. 상품ID값 형태로의 해당 상품 정보 요청시, detail함수
+#7. CURD - 상품ID값 형태로의 해당 상품 정보 요청시, detail함수
 def detail(request, itemid):
     item = get_object_or_404(Item, itemid=itemid)
     print(item)
     return render(request, 'index_detail.html', {'item': item})
+
+#8. CURD - insert요청시, insert함수
+def insert(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        #최대 itemid계산
+        obj = Item.objects.aggregate(itemid=Max("itemid"))
+        if obj['itemid']==None:
+            obj['itemid']=0
+
+        item = Item()
+        item.itemid = int(obj['itemid']) + 1
+        item.itemname = data.get("itemname", "이름없음")
+        item.description = data.get("description", "설명없음")
+        item.price = data.get("price", "가격없음")
+        item.pictureurl = data.get("pictureurl", "이미지없음")
+        item.save()
+        #시작 페이지로 리다이렉트
+        return redirect('/')
 
 #2. 문자열 형태의 get 요청시, getItem함수
 def getItem(request, itemid):

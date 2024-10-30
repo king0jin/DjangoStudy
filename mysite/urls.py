@@ -23,7 +23,7 @@ from myweb import views
 urlpatterns = [
     #admin요청이 왔을 때, admin.site에 있는 urls함수 호출
     path('admin/', admin.site.urls),
-    #1. 기본 요청 설정
+    #1. 기본 요청 설정 -> #6. CURD - 전체 데이터 조회
     path('', views.index), #myweb.views에 있는 index함수 호출
     #2. 문자열 형태의 get 요청 설정
     path('get/<str:itemid>', views.getItem), #myweb.views에 있는 getItem함수 호출
@@ -37,6 +37,8 @@ urlpatterns = [
     #5. 쿠키 생성/읽기 요청
     path('cookiecreate', views.cookieCreate), #myweb.views에 있는 cookieCreate함수 호출
     path('cookieread', views.cookieRead), #myweb.views에 있는 cookieRead함수 호출
-    #7. 상품ID값 형태로의 해당 상품 정보 요청
+    #7. CURD - 상품ID값 형태로의 해당 상품 정보 요청
     path('detail/<int:itemid>', views.detail, name='item-detail'), #myweb.views에 있는 detail함수
+    #8. CURD - 상품 데이터 삽입
+    path('insert', views.insert), #myweb.views에 있는 insert함수
 ]
