@@ -1,0 +1,15 @@
+div.body{
+    overflow-y:auto;
+    scrollbar-face-color:pink;
+    scrollbar-shadow-color: palevioletred;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+tr.header{
+    background: plum;
+}
+
+tr.record{
+    background: rgb(240, 186, 227);
+}

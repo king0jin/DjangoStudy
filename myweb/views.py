@@ -6,13 +6,21 @@ from django.shortcuts import render
  
 from django.http import HttpResponse
 
+#6. CRUD작업을 위해 사용하고 싶은 테이블 불어오기
+from myweb.models import Item
+
 #1. 기본 요청시, index함수
+#6. CRUD - 기본 요청시, 테이블 모든 데이터 조회
 def index(request):
     # return HttpResponse("kin0jin의 장고 프로젝트~")
-    
     #1.1 template - render함수
-    return render(request, 'index.html', {'message':"메세지"})
+    # return render(request, 'index.html', {'message':"메세지"})
     #클라이언트의 요청, 요청시 출력되는 파일(template), 파일에 전달되는 데이터(키:값)
+
+    #6.
+    data = Item.objects.all()
+    print(data)
+    return render(request, 'index.html', {'data':data})
 
 #2. 문자열 형태의 get 요청시, getItem함수
 def getItem(request, itemid):

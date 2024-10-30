@@ -131,7 +131,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 #css, js, image 파일과 같은 정적 파일이 저장되는 디렉토리 설정
 import os
-ATATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 #로컬에 파일 업로드 시 설정
 MEDIAURL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
