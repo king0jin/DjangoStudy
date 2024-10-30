@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 #URL과 요청함수 연결
@@ -17,10 +17,16 @@ def index(request):
     # return render(request, 'index.html', {'message':"메세지"})
     #클라이언트의 요청, 요청시 출력되는 파일(template), 파일에 전달되는 데이터(키:값)
 
-    #6.
+    #6. 전체 조회를 데이터 모두 가져오기
     data = Item.objects.all()
     print(data)
     return render(request, 'index.html', {'data':data})
+
+#7. 상품ID값 형태로의 해당 상품 정보 요청시, detail함수
+def detail(request, itemid):
+    item = get_object_or_404(Item, itemid=itemid)
+    print(item)
+    return render(request, 'index_detail.html', {'item': item})
 
 #2. 문자열 형태의 get 요청시, getItem함수
 def getItem(request, itemid):

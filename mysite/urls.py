@@ -37,4 +37,6 @@ urlpatterns = [
     #5. 쿠키 생성/읽기 요청
     path('cookiecreate', views.cookieCreate), #myweb.views에 있는 cookieCreate함수 호출
     path('cookieread', views.cookieRead), #myweb.views에 있는 cookieRead함수 호출
+    #7. 상품ID값 형태로의 해당 상품 정보 요청
+    path('detail/<int:itemid>', views.detail, name='item-detail'), #myweb.views에 있는 detail함수
 ]

@@ -5,24 +5,24 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>king0jin의 상품목록</title>
+    <title>king0jin의 {{item.itemid}}번 상품 정보</title>
 </head>
 <body>
     <div align="center" class="body">
-        <h2>상품 목록</h2>
+        <h2>상품 정보</h2>
         <table border="1">
             <tr class="header">
                 <th align="center" width="80">상품 ID</th>
                 <th align="center" width="320">상품 이름</th>
                 <th align="center" width="100">상품 가격</th>
             </tr>
-            {% for item in data %}
+            {% if item  %}
                 <tr class="record">
                     <td align="center">{{item.itemid}}</td>
                     <td align="center">{{item.itemname}}</td>
                     <td align="center">{{item.price}}원</td>
                 </tr>
-            {%  endfor %}
+            {%  endif %}
         </table>
     </div>
 </body>
