@@ -30,7 +30,7 @@ class Car(models.Model):
 #2. 데이터베이스에 테이블을 생성해서 클래스와 매핑
 class Item(models.Model):
     itemid = models.IntegerField(primary_key=True)
-    itemname = models.CharField(max_length=128)
+    itemname = models.CharField(max_length=20)
     price = models.IntegerField()
-    description = models.CharField(max_length=128)
-    pictureurl = models.CharField(max_length=50)
+    description = models.CharField(max_length=50)
+    pictureurl = models.CharField(max_length=20)
