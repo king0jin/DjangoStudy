@@ -38,17 +38,17 @@ def detail(request, itemid):
 #8.1 CRUD - 데이터 수정
 def insert(request):
     if request.method == "POST":
-        data = json.loads(request.body)
         item = Item()
+        data = json.loads(request.body)
         itemid = data.get("itemid")
         if itemid:
-            # itemid로 기존 아이템 가져오기
+            # 데이터 수정 - itemid로 기존 아이템 가져오기
             try:
                 item = Item.objects.get(itemid=itemid)
             except Item.DoesNotExist:
                 return JsonResponse({"error": "Item not found"}, status=404)
         else:
-            # 새로운 아이템 생성 - 최대 itemid 계산
+            # 데이터 삽입 - 최대 itemid 계산
             obj = Item.objects.aggregate(itemid=Max("itemid"))
             if obj['itemid'] is None:
                 obj['itemid'] = 0
@@ -56,11 +56,23 @@ def insert(request):
 
         item.itemname = data.get("itemname", "이름없음")
         item.description = data.get("description", "설명없음")
-        item.price = data.get("price", "가격없음")
+        item.price = data.get("price", 0)
         item.pictureurl = data.get("pictureurl", "이미지없음")
         item.save()
         #시작 페이지로 리다이렉트
         return redirect('/')
+    #8.2 CRUD - 데이터 삭제
+    elif request.method == "DELETE":
+        item = Item()
+        data = json.loads(request.body)
+        itemid = data.get("itemid")
+        if itemid:
+            try:
+                item = Item.objects.get(itemid=itemid)
+                item.delete()
+                item.save()
+            except Item.DoesNotExist:
+                return JsonResponse({"error": "Item not found"}, status=404)
 
 #2. 문자열 형태의 get 요청시, getItem함수
 def getItem(request, itemid):
