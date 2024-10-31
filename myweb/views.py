@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404
 #URL과 요청함수 연결
 #프로젝트 urls.py에 작성한 요청시 수행될 함수 작성
  
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 #CRUD작업 - 사용하고 싶은 테이블(모델) 불어오기
 from myweb.models import Item
@@ -35,16 +35,25 @@ def detail(request, itemid):
     return render(request, 'index_detail.html', {'item': item})
 
 #8. CURD - insert요청시, insert함수
+#8.1 CRUD - 데이터 수정
 def insert(request):
     if request.method == "POST":
         data = json.loads(request.body)
-        #최대 itemid계산
-        obj = Item.objects.aggregate(itemid=Max("itemid"))
-        if obj['itemid']==None:
-            obj['itemid']=0
-
         item = Item()
-        item.itemid = int(obj['itemid']) + 1
+        itemid = data.get("itemid")
+        if itemid:
+            # itemid로 기존 아이템 가져오기
+            try:
+                item = Item.objects.get(itemid=itemid)
+            except Item.DoesNotExist:
+                return JsonResponse({"error": "Item not found"}, status=404)
+        else:
+            # 새로운 아이템 생성 - 최대 itemid 계산
+            obj = Item.objects.aggregate(itemid=Max("itemid"))
+            if obj['itemid'] is None:
+                obj['itemid'] = 0
+            item.itemid = int(obj['itemid']) + 1
+
         item.itemname = data.get("itemname", "이름없음")
         item.description = data.get("description", "설명없음")
         item.price = data.get("price", "가격없음")
