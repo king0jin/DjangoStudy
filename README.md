@@ -1,5 +1,6 @@
 # DjangoStudy
 파이썬 웹 프로그래밍 프레임워크인 Django를 이용하기 
+**pip install django**
 
 ## 프로젝트와 애플리케이션 생성하기
 ### 프로젝트 생성
@@ -25,7 +26,7 @@ secret key, debug mode, 개발환경에서 수행되는 내용을 다르게 만�
   + 운영 모드인 경우 : 반드시 서버의 IP/도메인을 기재
   + 개발 모드인 경우 : 자동으로 localhost, 127.0.0.1로 간주
     + 모든 컴퓨터 : '*'
-+ INSTAKKED_APPS
++ INSTALLED_APPS
   + 사용할 패키지와 애플리케이션 기재
 + MIDDLEWARE
   + 요청이 오기 전/후에 수행할 내용을 기재
