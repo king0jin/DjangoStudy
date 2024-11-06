@@ -1,5 +1,7 @@
 # DjangoStudy
 파이썬 웹 프로그래밍 프레임워크인 Django를 이용하기 
+
+
 **pip install django**
 
 ## 프로젝트와 애플리케이션 생성하기
